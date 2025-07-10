@@ -22,6 +22,12 @@ const Depoimentos = () => {
         fetchDepoimentos();
     }, []);
 
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('pt-BR', options); // Formato brasileiro
+    };
+
     if (loading) {
         return <p>Carregando depoimentos...</p>;
     }
@@ -44,7 +50,7 @@ const Depoimentos = () => {
                                         <span className="message-id">
                                             <strong>ID:</strong> {depoimento.id}
                                         </span>
-                                        <span className="message-date">{depoimento.data}</span>
+                                        <span className="message-date">{formatDate(depoimento.data)}</span>
                                     </div>
                                 </div>
                                 <p className="message-text">
